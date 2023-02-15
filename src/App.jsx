@@ -1,5 +1,6 @@
 import { useRef, useLayoutEffect } from "react";
 import Hello from "./Hello.svelte";
+import Counter from "./Counter.svelte";
 import useStore from "./store";
 
 function generateSvelteComponent(Component) {
@@ -23,6 +24,7 @@ function generateSvelteComponent(Component) {
 }
 
 const SvelteHello = generateSvelteComponent(Hello);
+const SvelteCounter = generateSvelteComponent(Counter);
 
 function App() {
   const { count, increment } = useStore();
@@ -34,6 +36,7 @@ function App() {
       <button className="btn btn-success" onClick={increment}>
         count is {count}
       </button>
+      <SvelteCounter />
     </div>
   );
 }
