@@ -1,5 +1,6 @@
-import { useState, useRef, useLayoutEffect } from "react";
+import { useRef, useLayoutEffect } from "react";
 import Hello from "./Hello.svelte";
+import useStore from "./store";
 
 function generateSvelteComponent(Component) {
   return (props) => {
@@ -24,19 +25,13 @@ function generateSvelteComponent(Component) {
 const SvelteHello = generateSvelteComponent(Hello);
 
 function App() {
-  const [count, setCount] = useState(0);
+  const { count, increment } = useStore();
 
   return (
     <div>
       <SvelteHello />
-      <SvelteHello
-        text="from react!"
-        onClick={() => setCount((count) => ++count)}
-      />
-      <button
-        className="btn btn-success"
-        onClick={() => setCount((count) => count + 1)}
-      >
+      <SvelteHello text="from react!" onClick={increment} />
+      <button className="btn btn-success" onClick={increment}>
         count is {count}
       </button>
     </div>
