@@ -13,13 +13,22 @@ function App() {
       svelteRef.current.firstChild.remove();
     }
 
-    new Hello({ target: svelteRef.current });
+    new Hello({
+      target: svelteRef.current,
+      props: {
+        text: "from react",
+        onClick: () => alert("Click from react"),
+      },
+    });
   }, []);
 
   return (
     <div>
       <div ref={svelteRef}></div>
-      <button onClick={() => setCount((count) => count + 1)}>
+      <button
+        className="btn btn-success"
+        onClick={() => setCount((count) => count + 1)}
+      >
         count is {count}
       </button>
     </div>
